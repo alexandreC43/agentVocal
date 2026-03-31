@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Call – Votre permanence téléphonique intelligente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f2ede6;
+      --bg2: #ebe5dc;
+      --white: #ffffff;
+      --black: #111111;
+      --dark: #1a1a1a;
+      --muted: #888880;
+      --border: rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--black);
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 80px);
+      max-width: 1100px;
+      z-index: 100;
+      background: var(--white);
+      border-radius: 100px;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.09);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .nav-logo-box {
+      background: var(--black);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 0.82rem;
+      padding: 6px 11px;
+      border-radius: 10px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo-box span { display: block; font-size: 0.68rem; letter-spacing: 0.1em; font-weight: 700; }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0.65;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      background: var(--black);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 12px 24px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { opacity: 0.82; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 160px 24px 80px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border-radius: 100px;
+      padding: 8px 18px 8px 10px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 36px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    }
+    .badge-avatars { display: flex; }
+    .badge-avatar {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      margin-right: -7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #555;
+    }
+    .ba1 { background: #d4b8a0; z-index: 3; }
+    .ba2 { background: #b8c4d4; z-index: 2; }
+    .ba3 { background: #c4d4b8; z-index: 1; }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--black);
+      max-width: 860px;
+      margin-bottom: 26px;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+    .hero-sub strong { color: var(--dark); font-weight: 600; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-black {
+      background: var(--black);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 16px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-black:hover { opacity: 0.82; transform: scale(0.98); }
+    .btn-white {
+      background: var(--white);
+      color: var(--black);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 16px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+    }
+    .btn-white:hover { background: #f0ede8; transform: scale(0.98); }
+    .hero-micro { margin-top: 20px; font-size: 0.82rem; color: var(--muted); }
+
+    /* ── PROOF ── */
+    .proof-strip {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 26px 48px;
+      text-align: center;
+    }
+    .proof-strip p { font-size: 0.87rem; color: var(--muted); margin-bottom: 14px; }
+    .stars { display: flex; align-items: center; justify-content: center; gap: 4px; }
+    .star { color: #f5a623; font-size: 1.1rem; }
+    .stars-score { font-weight: 700; color: var(--dark); font-size: 0.9rem; margin-left: 4px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      margin-bottom: 24px;
+      color: var(--black);
+    }
+
+    /* ── PROBLÈME ── */
+    .problem { background: var(--bg2); }
+    .problem-intro {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 56px;
+      line-height: 1.7;
+    }
+    .problem-intro strong { color: var(--dark); font-weight: 600; }
+    .pain-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .pain-card {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 32px 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .pain-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.09); }
+    .pain-icon { font-size: 2rem; margin-bottom: 18px; display: block; }
+    .pain-card h3 { font-size: 1.08rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .pain-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; }
+    .pain-card p strong { color: #cc3333; font-weight: 600; }
+
+    /* ── SOLUTION ── */
+    .solution { background: var(--bg); }
+    .solution-lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 56px;
+      line-height: 1.7;
+    }
+    .solution-lead strong { color: var(--dark); font-weight: 600; }
+    .solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
+    .solution-features { display: flex; flex-direction: column; gap: 20px; }
+    .feat {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 24px 26px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .feat-icon {
+      width: 40px; height: 40px;
+      border-radius: 11px;
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .feat-body h3 { font-size: 0.98rem; font-weight: 800; margin-bottom: 5px; letter-spacing: -0.01em; }
+    .feat-body p { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
+
+    .solution-visual {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 26px 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      position: sticky;
+      top: 100px;
+    }
+    .visual-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .visual-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+    .visual-title { font-size: 0.74rem; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .transcript { display: flex; flex-direction: column; gap: 13px; }
+    .msg { display: flex; gap: 9px; align-items: flex-start; }
+    .msg-avatar {
+      width: 27px; height: 27px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .msg-avatar.ai { background: var(--black); color: #fff; }
+    .msg-avatar.user { background: var(--bg2); color: var(--muted); }
+    .msg-bubble {
+      background: var(--bg2);
+      border-radius: 12px;
+      padding: 9px 13px;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      max-width: 250px;
+      color: var(--dark);
+    }
+    .msg.ai .msg-bubble { background: var(--black); color: #fff; }
+    .msg-label { font-size: 0.65rem; color: var(--muted); margin-bottom: 4px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .msg.ai .msg-label { color: var(--black); }
+    .rdv-pill {
+      margin-top: 16px;
+      background: #f0faf4;
+      border: 1px solid #bbf0cc;
+      border-radius: 12px;
+      padding: 13px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .rdv-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .rdv-pill strong { display: block; font-weight: 700; color: #1a7a3a; font-size: 0.86rem; }
+    .rdv-pill span { color: #4a9a5a; font-size: 0.76rem; }
+
+    /* ── PROJECTION ── */
+    .projection { background: var(--bg2); text-align: center; }
+    .projection h2 { max-width: 660px; margin: 0 auto 20px; }
+    .projection-text { font-size: 1.04rem; color: var(--muted); max-width: 540px; margin: 0 auto 64px; line-height: 1.7; }
+    .projection-text strong { color: var(--dark); font-weight: 600; }
+    .stats-row {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .stat { padding: 40px 48px; border-right: 1px solid var(--border); flex: 1; }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-size: 2.8rem; font-weight: 900; color: var(--black); line-height: 1; letter-spacing: -0.04em; }
+    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 8px; line-height: 1.4; }
+
+    /* ── CTA ── */
+    .cta-section { background: var(--bg); text-align: center; }
+    .cta-box {
+      background: var(--black);
+      border-radius: 28px;
+      padding: 80px 48px;
+      color: #fff;
+    }
+    .cta-box .section-label { color: rgba(255,255,255,0.32); }
+    .cta-box h2 { color: #fff; max-width: 560px; margin: 0 auto 20px; }
+    .cta-box p { color: rgba(255,255,255,0.5); max-width: 420px; margin: 0 auto 40px; }
+    .btn-white-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--black);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 18px 36px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-white-cta:hover { background: #f0f0f0; transform: scale(0.98); }
+    .cta-micro { margin-top: 18px; font-size: 0.8rem; color: rgba(255,255,255,0.28); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 44px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-logo-box {
+      background: var(--black);
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.78rem;
+      padding: 5px 10px;
+      border-radius: 8px;
+      line-height: 1.1;
+    }
+    .footer-logo-box span { display: block; font-size: 0.62rem; letter-spacing: 0.1em; }
+    .footer-text { font-size: 0.82rem; color: var(--muted); max-width: 400px; text-align: center; line-height: 1.6; }
+    .footer-text em { font-style: normal; color: var(--dark); font-weight: 500; }
+    .footer-right { font-size: 0.8rem; color: var(--muted); text-align: right; line-height: 1.6; }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      nav { width: calc(100% - 32px); top: 12px; border-radius: 18px; }
+      .nav-links { display: none; }
+      .solution-grid { grid-template-columns: 1fr; }
+      .solution-visual { position: static; }
+      .stats-row { flex-direction: column; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 32px; }
+      .stat:last-child { border-bottom: none; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-right, .footer-text { text-align: center; }
+      .cta-box { padding: 48px 24px; border-radius: 20px; }
+      section { padding: 72px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo-box">THE<span>CALL</span></div>
+  <ul class="nav-links">
+    <li><a href="#probleme">Le problème</a></li>
+    <li><a href="#solution">La solution</a></li>
+    <li><a href="#cta">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#cta">Recevoir une démo</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <div class="badge-avatars">
+      <div class="badge-avatar ba1">A</div>
+      <div class="badge-avatar ba2">M</div>
+      <div class="badge-avatar ba3">J</div>
+    </div>
+    &nbsp;Adopté par des dizaines de professionnels de l'immobilier
+  </div>
+  <h1>Ne laissez plus aucun mandat finir sur votre répondeur.</h1>
+  <p class="hero-sub">L'assistant vocal intelligent qui <strong>qualifie vos prospects</strong> et <strong>remplit votre agenda</strong> pendant que vous êtes en visite.</p>
+  <div class="hero-btns">
+    <a class="btn-black" href="#cta">Recevoir une démo vocale</a>
+    <a class="btn-white" href="#solution">Voir comment ça marche</a>
+  </div>
+  <p class="hero-micro">Gratuit · Sans engagement · 2 minutes pour tester la voix</p>
+</section>
+
+<!-- PROOF -->
+<div class="proof-strip">
+  <p>Déjà adopté par +25 agents immos pour sécuriser leurs commissions.</p>
+  <div class="stars">
+    <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    <span class="stars-score">5,0</span>
+  </div>
+</div>
+
+<!-- PROBLÈME -->
+<section class="problem" id="probleme">
+  <div class="container">
+    <p class="section-label">Le problème</p>
+    <h2>80 % de votre temps<br/>est sur le terrain.</h2>
+    <p class="problem-intro fade-in">Quand vous êtes en rendez-vous, votre téléphone sonne. Et ce que vous ratez, c'est rarement un démarcheur — c'est un <strong>projet concret</strong>.</p>
+    <div class="pain-cards">
+      <div class="pain-card fade-in">
+        <span class="pain-icon">📵</span>
+        <h3>L'appel manqué</h3>
+        <p>Le prospect rappelle l'agence d'en face <strong>30 secondes après</strong>. Vous ne le savez même pas.</p>
+      </div>
+      <div class="pain-card fade-in">
+        <span class="pain-icon">📼</span>
+        <h3>Le répondeur</h3>
+        <p>Personne ne laisse de message en 2025. C'est une commission de <strong>10 000 €</strong> qui s'envole en silence.</p>
+      </div>
+      <div class="pain-card fade-in">
+        <span class="pain-icon">📲</span>
+        <h3>L'interruption</h3>
+        <p>Décrocher pendant une visite, c'est <strong>perdre la confiance</strong> du vendeur et du visiteur en même temps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution" id="solution">
+  <div class="container">
+    <p class="section-label">Comment ça marche</p>
+    <h2>Un assistant. Une voix.<br/>24h/24.</h2>
+    <p class="solution-lead fade-in">Notre IA ne prend pas des messages. Elle <strong>assure votre permanence</strong> avec une voix ultra-humaine — et elle connaît votre business par cœur.</p>
+    <div class="solution-grid">
+      <div class="solution-features fade-in">
+        <div class="feat">
+          <div class="feat-icon">🧠</div>
+          <div class="feat-body">
+            <h3>Réponses précises</h3>
+            <p>Elle connaît vos mandats, vos honoraires et vos zones. Elle répond comme vous répondriez.</p>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🎯</div>
+          <div class="feat-body">
+            <h3>Qualification instantanée</h3>
+            <p>Elle trie les curieux des vrais projets — vente, achat, estimation — et note la maturité de chaque contact.</p>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">📅</div>
+          <div class="feat-body">
+            <h3>Prise de RDV directe</h3>
+            <p>Elle bloque les estimations et visites dans votre agenda. Zéro allers-retours. Zéro friction.</p>
+          </div>
+        </div>
+      </div>
+      <div class="solution-visual fade-in">
+        <div class="visual-header">
+          <div class="visual-dot"></div>
+          <span class="visual-title">Session en cours · 14h32</span>
+        </div>
+        <div class="transcript">
+          <div class="msg user">
+            <div class="msg-avatar user">M</div>
+            <div>
+              <div class="msg-label">Prospect</div>
+              <div class="msg-bubble">Bonjour, l'appartement rue Pasteur est encore disponible ?</div>
+            </div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-avatar ai">TC</div>
+            <div>
+              <div class="msg-label">Assistant The Call</div>
+              <div class="msg-bubble">Oui — 68 m², 3 pièces, 189 000 €. Vous êtes en recherche active ou vous démarrez ?</div>
+            </div>
+          </div>
+          <div class="msg user">
+            <div class="msg-avatar user">M</div>
+            <div>
+              <div class="msg-label">Prospect</div>
+              <div class="msg-bubble">On cherche depuis 2 mois, on est prêts. On aimerait visiter cette semaine.</div>
+            </div>
+          </div>
+          <div class="msg ai">
+            <div class="msg-avatar ai">TC</div>
+            <div>
+              <div class="msg-label">Assistant The Call</div>
+              <div class="msg-bubble">Parfait. Jeudi 10h ou vendredi 14h — lequel vous convient ?</div>
+            </div>
+          </div>
+        </div>
+        <div class="rdv-pill">
+          <span class="rdv-icon">✅</span>
+          <div>
+            <strong>RDV confirmé — Jeudi 10h00</strong>
+            <span>Ajouté à votre agenda · Fiche prospect envoyée</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTION -->
+<section class="projection">
+  <div class="container">
+    <p class="section-label">Le résultat</p>
+    <h2 class="fade-in">Rallumez votre téléphone l'esprit libre.</h2>
+    <p class="projection-text fade-in">Imaginez : vous terminez votre visite, vous consultez votre agenda, et <strong>vos prochains rendez-vous sont déjà calés.</strong> Vos clients ont eu une réponse pro immédiate. Vous n'avez rien eu à faire.</p>
+    <div class="stats-row fade-in">
+      <div class="stat">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Permanence téléphonique</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Appel sans réponse</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2 min</div>
+        <div class="stat-label">Pour tester la voix</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <div class="cta-box">
+      <p class="section-label">Passez à l'action</p>
+      <h2 class="fade-in">Curieux d'entendre la différence avec un robot ?</h2>
+      <p class="fade-in">Prenons 15 min pour une démo cette semaine. Jugez par vous-même.</p>
+      <a class="btn-white-cta fade-in" href="https://calendly.com/alexandre-the-call/onboarding">
+        📞 Réservez une démo de 15 min
+      </a>
+      <p class="cta-micro">Gratuit · Sans engagement · Testez la voix en 2 minutes</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-box">THE<span>CALL</span></div>
+  <p class="footer-text"><em>Déjà adopté par +25 pros de l'immobilier</em> pour sécuriser leurs commissions et ne plus jamais rater un mandat en visite.</p>
+  <div class="footer-right">
+    Une solution éditée par The Call
+    <div style="font-size:0.74rem; opacity:0.55; margin-top:3px;">© 2025 · the-call.io</div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
